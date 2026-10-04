@@ -22,7 +22,7 @@ Getting your head around this has implications across all sorts of applications 
 
 Instead of a dry wall of text, we're going to use **Memory Dungeon**, a simple and modular program I put together to help teach people about memory.
 
-You can find it and use it yourself along with the article [here on GitHub](https://www.github.com/coldsmoke4776/memory_dungeon.git).
+You can find it and use it yourself along with the article [here on GitHub](https://www.github.com/jawndeere-sec/memory_dungeon.git).
 
 Memory Dungeon is an interactive demo of heap memory, a stack frame and a disassembler - so you can see how these concepts work in real life, instead of just trying to visualize it all in your head. 
 

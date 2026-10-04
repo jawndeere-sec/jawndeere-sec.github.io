@@ -20,7 +20,7 @@ export const ARCADE_EXPERIENCES: ArcadeExperience[] = [
       "My first ever game I built with my own hands in C. Just loads a party file with existing info and runs an encounter with real RNG and turn-based combat. It's a little slow (10-20secs) but you should get a different result every time!",
     tags: ["CLI", "RPG",],
     links: [
-      { label: "Read the repo", href: "https://github.com/coldsmoke4776/cndnd" },
+      { label: "Read the repo", href: "https://github.com/jawndeere-sec/cndnd" },
     ],
     terminal: {
       caption: "Live C&D&D run",
@@ -37,7 +37,7 @@ export const ARCADE_EXPERIENCES: ArcadeExperience[] = [
     tags: ["Itch.io", "Dice", "Quick"],
     links: [
       { label: "Try on itch.io", href: "https://itch.io/embed-upload/16538024?color=333333" },
-      { label: "Read the repo", href: "https://github.com/coldsmoke4776/rollhighordie" },
+      { label: "Read the repo", href: "https://github.com/jawndeere-sec/rollhighordie" },
     ],
   },
 ];

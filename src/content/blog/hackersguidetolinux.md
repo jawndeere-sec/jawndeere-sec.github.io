@@ -294,7 +294,7 @@ So naturally, I tried to write my own shell which reframed Bash commands as spel
 
 It sounds goofy, but doing this meant that I had to actually understand the process that whirrs underneath the surface when you use the Bash shell.
 
-If you're interested, check it out here: [Wizard's Shell](https://github.com/coldsmoke4776/wizardshell)
+If you're interested, check it out here: [Wizard's Shell](https://github.com/jawndeere-sec/wizardshell)
 
 Every pentest, every Capture The Flag, every time you want to use your own computer via the CLI — you’ll be dropped into a shell sooner or later. 
 

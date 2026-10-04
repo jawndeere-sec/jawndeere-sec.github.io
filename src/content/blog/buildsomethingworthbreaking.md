@@ -260,7 +260,7 @@ Workweek is deliberately small enough that you can read the code, compile it you
 
 If you want to see whether you can find the remaining problems — and prove that they’re actually problems rather than just taking my word for it — the whole thing is on GitHub:
 
-[Workweek on GitHub](https://github.com/coldsmoke4776/workweek)
+[Workweek on GitHub](https://github.com/jawndeere-sec/workweek)
 
 Break it. Debug it. Reverse it. Make the goblins richer.
 
