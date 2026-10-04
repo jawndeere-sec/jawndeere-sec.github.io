@@ -2,8 +2,10 @@ export const SITE_TITLE = "Matt Twells (jawndeere)";
 export const SITE_DESCRIPTION =
   "A personal portfolio showcasing projects, blog posts, and programming insights.";
 export const GITHUB_USERNAME = "jawndeere-sec"; // Replace with your actual GitHub username
-export const QUOTE =
-  "Principal Solutions Engineer | Deep Technical Security | C++ • Detection • Offensive Tradecraft | Birds by twenty, Team Wawa till I die";
+export const QUOTE = `Principal Solutions Engineer
+Deep Technical Security • C++ • Detection • Offensive Tradecraft
+
+Birds by twenty. Team Wawa till I die.`;
 
 export const KNOWN_TECH = [
   "Astro",
