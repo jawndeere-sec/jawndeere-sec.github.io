@@ -40,12 +40,12 @@ const posts = (await getCollection("blog")).sort(
     </div>
   </Section>
   <Section title="About Me">
-    <div class="w-full grid place-items-center">
-      <div
-        class="max-w-4xl text-xl md:text-lg opacity-90 text-center justify-evenly"
-      >
-        <p>{ABOUT_ME}</p>
-      </div>
+  <div class="w-full grid place-items-center">
+    <div
+      class="max-w-3xl text-xl md:text-lg opacity-90 text-center leading-relaxed"
+    >
+      <p class="whitespace-pre-line">{ABOUT_ME}</p>
     </div>
-  </Section>
+  </div>
+</Section>
 </Layout>
