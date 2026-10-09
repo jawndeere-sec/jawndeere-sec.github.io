@@ -1,0 +1,74 @@
+---
+import { Code } from "astro:components";
+import fs from "node:fs";
+import path from "node:path";
+import Layout from "@/layouts/Layout.astro";
+import { cppSnippetDirectory } from "@/lib/technicalCabinet";
+
+const filename = "blank-page-killer.cpp";
+const source = fs.readFileSync(
+  path.join(cppSnippetDirectory("project-start"), filename),
+  "utf8",
+);
+---
+
+<Layout
+  title="The Blank Page Killer • C++ Cabinet"
+  description="A C++ project-starting template that separates design ownership from reference work and turns progress into evidence."
+>
+  <article class="pb-14 pt-10">
+    <div class="reading-copy prose prose-invert mx-auto max-w-4xl px-4 md:px-0">
+      <nav class="not-prose mb-8 font-mono text-sm">
+        <a href="/cabinet/" class="text-[#5eead4] hover:text-[#c084fc]">
+          ~/cabinet
+        </a>
+        <span class="text-white/35"> / </span>
+        <a href="/cabinet/cpp/" class="text-[#5eead4] hover:text-[#c084fc]">
+          cpp
+        </a>
+        <span class="text-white/35"> / project-start</span>
+      </nav>
+
+      <p
+        class="not-prose font-mono text-xs uppercase tracking-[0.25em] text-[#c084fc]"
+      >
+        Project-starting tool
+      </p>
+      <h1>The Blank Page Killer</h1>
+      <p>
+        This template does not design a program or write it for me. It turns a
+        blank source file into a sequence of decisions: mission, smallest
+        working version, inputs, outputs, data, flow, known tools, research
+        boundaries, and the next observable checkpoint.
+      </p>
+      <p>
+        Looking up syntax is part of programming. I still own the intent,
+        architecture, data model, control flow, decisions, and understanding of
+        the code I keep.
+      </p>
+
+      <div
+        class="not-prose my-8 rounded-xl border border-[#5eead4]/25 bg-[#5eead4]/5 p-5"
+      >
+        <p class="m-0 font-mono text-sm leading-relaxed text-white/80">
+          The goal is not “Can I write this entire program from memory?” The
+          goal is “Do I know what I am trying to build, and can I work out how
+          to build it?”
+        </p>
+      </div>
+
+      <div
+        class="not-prose mb-3 flex flex-wrap items-center justify-between gap-3 font-mono"
+      >
+        <h2 class="m-0 text-xl text-[#5eead4]">{filename}</h2>
+        <a
+          href={`/cabinet/cpp/project-start/${filename}`}
+          class="text-xs text-[#c084fc] hover:text-white"
+        >
+          raw source ↗
+        </a>
+      </div>
+      <Code code={source} lang="cpp" theme="github-dark" />
+    </div>
+  </article>
+</Layout>

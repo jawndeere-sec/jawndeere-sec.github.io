@@ -1,24 +1,38 @@
 import type { APIRoute } from "astro";
 import fs from "node:fs";
-import { cppCabinetRoot, cppConceptDirectory } from "@/lib/technicalCabinet";
+import {
+  cppCabinetRoot,
+  cppConceptDirectory,
+  cppSnippetDirectory,
+} from "@/lib/technicalCabinet";
 
 export function getStaticPaths() {
   const conceptsRoot = `${cppCabinetRoot}/concepts`;
 
-  return fs
+  const sourceDirectories = fs
     .readdirSync(conceptsRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
-    .flatMap((entry) =>
-      fs
-        .readdirSync(cppConceptDirectory(entry.name), { withFileTypes: true })
-        .filter((file) => file.isFile() && /\.(?:c|cpp|h|txt)$/.test(file.name))
-        .map((file) => ({
-          params: { concept: entry.name, file: file.name },
-          props: {
-            sourcePath: `${cppConceptDirectory(entry.name)}/${file.name}`,
-          },
-        })),
-    );
+    .map((entry) => ({
+      routeSegment: entry.name,
+      directory: cppConceptDirectory(entry.name),
+    }));
+
+  sourceDirectories.push({
+    routeSegment: "project-start",
+    directory: cppSnippetDirectory("project-start"),
+  });
+
+  return sourceDirectories.flatMap(({ routeSegment, directory }) =>
+    fs
+      .readdirSync(directory, { withFileTypes: true })
+      .filter((file) => file.isFile() && /\.(?:c|cpp|h|txt)$/.test(file.name))
+      .map((file) => ({
+        params: { concept: routeSegment, file: file.name },
+        props: {
+          sourcePath: `${directory}/${file.name}`,
+        },
+      })),
+  );
 }
 
 export const GET: APIRoute = ({ props }) => {

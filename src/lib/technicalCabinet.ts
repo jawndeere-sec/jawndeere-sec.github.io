@@ -34,6 +34,10 @@ export function cppConceptDirectory(slug: string): string {
   return path.join(cppCabinetRoot, "concepts", slug);
 }
 
+export function cppSnippetDirectory(slug: string): string {
+  return path.join(cppCabinetRoot, "snippets", slug);
+}
+
 export function listExamples(slug: string): ReferenceExample[] {
   const directory = cppConceptDirectory(slug);
 
