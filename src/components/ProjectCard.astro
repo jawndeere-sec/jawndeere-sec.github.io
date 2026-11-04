@@ -2,12 +2,22 @@
 interface Props {
   title: string;
   description: string;
-  github: string;
+  github?: string;
+  article?: string;
+  articleLabel?: string;
   demoOutput?: string;
   demoImage?: string; // new prop for screenshots or GIFs
 }
 
-const { title, description, github, demoOutput, demoImage } = Astro.props;
+const {
+  title,
+  description,
+  github,
+  article,
+  articleLabel = "Read the writeup",
+  demoOutput,
+  demoImage,
+} = Astro.props;
 ---
 
 <div class="project-card border-l-2 border-accent-500 pl-4">
@@ -36,5 +46,10 @@ const { title, description, github, demoOutput, demoImage } = Astro.props;
     </div>
   )}
 
-  <a href={github} class="project-card-link underline mt-2 block">➜ View on GitHub</a>
+  {github && (
+    <a href={github} class="project-card-link underline mt-2 block">➜ View on GitHub</a>
+  )}
+  {article && (
+    <a href={article} class="project-card-link underline mt-2 block">➜ {articleLabel}</a>
+  )}
 </div>

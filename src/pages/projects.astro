@@ -273,28 +273,42 @@ pool_alloc/free: 0.119 ms
 // Just plain data, no <ProjectCard /> here
 const projects = [
   {
+    title: "LifeOS",
+    description: "I implemented Daniel Miessler's LifeOS and engineered a custom, unattended hourly workflow that synthesizes high-level business context from enterprise systems, triages roughly two dozen meetings and requests each week, and drafts recommendations and responses. Consequential actions still require explicit human approval.",
+  },
+  {
+    title: "Dashi",
+    description: "A published AI-led development experiment: a chess tutoring app combining React, FastAPI, and Stockfish with locally hosted LLM explanations through Ollama. The retrospective covers architecture, model integration, failures, and the limits of generated code.",
+    github: "https://github.com/jawndeere-sec/dashi/tree/main",
+    article: "/blog/cursortakethewheel.md/",
+    articleLabel: "Read the retrospective",
+    demoImage: "/dashi.png",
+  },
+  {
+    title: "Workweek",
+    description: "A deliberately vulnerable C++ application tested with LLDB to understand memory corruption, unsafe design, and authentication flaws.",
+    github: "https://github.com/jawndeere-sec/workweek",
+    article: "/blog/buildsomethingworthbreaking.md/",
+    articleLabel: "Read the LLDB walkthrough",
+    demoImage: "/imagesforarticles/workweekmainmenu.png",
+  },
+  {
+    title: "Linux Tracing Labs",
+    description: "Hands-on C++ and Linux tracing experiments using strace and bpftrace to examine process behavior, syscall boundaries, file-descriptor lifetimes, and the evidence available to defenders.",
+    article: "/blog/filedescriptor3.md/",
+    articleLabel: "Read the tracing lab",
+  },
+  {
     title: "Aquarium",
     description: "A C++ terminal aquarium with animated ASCII fish, different speeds and colors, wraparound, and kelp. Stops cleanly with Ctrl+C.",
     github: "https://github.com/jawndeere-sec/aquarium",
     demoImage: "/aquarium2.png",
   },
   {
-  title: "Workweek",
-  description: "A deliberately vulnerable C++ HR system for learning reverse engineering.",
-  github: "https://github.com/jawndeere-sec/workweek",
-  demoImage: "/imagesforarticles/workweekmainmenu.png",
-  },
-  {
     title: "Roll High Or Die",
     description: "A fun procedural arcade runner platform game written in C++ using raylib.",
     github: "https://github.com/jawndeere-sec/rollhighordie",
     demoImage: "/rollhigh.png",
-  },
-  {
-    title: "Dashi",
-    description: "An AI chess tutor web app, an experiment in AI-driven programming/project planning and use of Ollama local LLM integration.",
-    github: "https://github.com/jawndeere-sec/dashi/tree/main",
-    demoImage: "/dashi.png",
   },
   {
     title: "Stage 2 Proof: Benchmark of Custom Pool vs Malloc/Free",

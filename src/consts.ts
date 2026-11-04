@@ -1,9 +1,9 @@
 export const SITE_TITLE = "Matt Twells (jawndeere)";
 export const SITE_DESCRIPTION =
-  "A personal portfolio showcasing projects, blog posts, and programming insights.";
+  "Principal Solutions Engineer working across enterprise security, channel enablement, applied AI, and deep technical security.";
 export const GITHUB_USERNAME = "jawndeere-sec"; // Replace with your actual GitHub username
 export const QUOTE = `Principal Solutions Engineer
-Deep Technical Security • C++ • Detection • Offensive Tradecraft
+Enterprise Security • Channels & Partner Enablement • Applied AI
 
 Birds by twenty. Team Wawa till I die.`;
 
@@ -23,9 +23,11 @@ export const KNOWN_TECH = [
   "React",
 ];
 
-export const ABOUT_ME = `I’m Matt — Principal Solutions Engineer, security nerd, and habitual builder.
+export const ABOUT_ME = `I’m Matt — a Principal Solutions Engineer and former regional SE Lead working across cybersecurity, enterprise architecture, technical sales, channel enablement, and applied AI.
 
-I’m especially interested in deep technical security: C++, systems internals, detection, reverse engineering, and offensive tradecraft. I build things, break things, trace what happened, and write about what I learn.
+In my first seven months at DeepSeas, I supported 36 closed-won deals totaling more than $1M in attributable ACV, following $6.8M+ in tracked attributable revenue at Bishop Fox. Most of my customer-facing engagements are directly with CISOs, VPs, and senior security leaders.
+
+I enjoy building the technical systems and operational processes that turn complicated requirements into things that actually work. I’m also deeply interested in C++, systems internals, detection, reverse engineering, and offensive tradecraft: build it, break it, trace it, explain it.
 
 This site is where I keep the receipts.
 
