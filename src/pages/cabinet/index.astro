@@ -1,7 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import { conceptSlugFromId, getDrawerMetadata } from "@/lib/technicalCabinet";
+import {
+  conceptSlugFromId,
+  getDrawerMetadata,
+  studyCabinets,
+  studyCabinetSlug,
+} from "@/lib/technicalCabinet";
 
 const cppEntries = await getCollection("cppCabinet");
 const cppDrawers = cppEntries.map((entry) =>
@@ -11,6 +16,7 @@ const cppExampleCount = cppDrawers.reduce(
   (count, drawer) => count + drawer.examples.length,
   0,
 );
+const studyEntries = await getCollection("studyCabinet");
 ---
 
 <Layout
@@ -28,9 +34,9 @@ const cppExampleCount = cppDrawers.reduce(
     <p
       class="mt-5 max-w-3xl text-base leading-relaxed text-white/75 md:text-lg"
     >
-      A central collection of mechanisms I have studied, practiced, and
-      verified. Pick a sub-cabinet, open the drawer you need, and start from
-      something that already works.
+      A central collection of mechanisms I have studied, practiced, or tested.
+      Pick a sub-cabinet, open the drawer you need, and check its evidence
+      boundary.
     </p>
 
     <div class="mt-10 grid gap-5 md:grid-cols-2">
@@ -66,6 +72,37 @@ const cppExampleCount = cppDrawers.reduce(
           open sub-cabinet →
         </a>
       </article>
+      {
+        studyCabinets.map((cabinet) => (
+          <article class="article-card rounded-xl border border-white/10 bg-white/5 p-6">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-[#5eead4]">
+              {
+                studyEntries.filter(
+                  (entry) => studyCabinetSlug(entry.id) === cabinet.slug,
+                ).length
+              }{" "}
+              concept drawers
+            </p>
+            <h2 class="mt-4 text-3xl font-semibold text-white">
+              <a
+                href={`/cabinet/${cabinet.slug}/`}
+                class="article-card-title hover:text-[#5eead4]"
+              >
+                {cabinet.title}
+              </a>
+            </h2>
+            <p class="mt-3 text-sm leading-relaxed text-white/65">
+              {cabinet.description}
+            </p>
+            <a
+              href={`/cabinet/${cabinet.slug}/`}
+              class="article-card-cta mt-5 inline-block font-mono text-sm"
+            >
+              open sub-cabinet →
+            </a>
+          </article>
+        ))
+      }
     </div>
   </section>
 </Layout>

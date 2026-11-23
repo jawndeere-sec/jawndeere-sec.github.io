@@ -1,0 +1,65 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import {
+  getStudyDrawerMetadata,
+  studyCabinets,
+  studyCabinetSlug,
+  studyConceptSlug,
+  type DrawerMetadata,
+} from "@/lib/technicalCabinet";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("studyCabinet");
+
+  return entries.flatMap((entry) => {
+    const cabinet = studyCabinets.find(
+      (item) => item.slug === studyCabinetSlug(entry.id),
+    );
+    if (!cabinet) return [];
+    const slug = studyConceptSlug(entry.id);
+
+    return [
+      {
+        params: { cabinet: cabinet.slug, slug },
+        props: {
+          entry,
+          cabinet,
+          drawer: getStudyDrawerMetadata(cabinet.slug, slug),
+        },
+      },
+    ];
+  });
+}
+
+type Props = {
+  entry: CollectionEntry<"studyCabinet">;
+  cabinet: (typeof studyCabinets)[number];
+  drawer: DrawerMetadata;
+};
+
+const { entry, cabinet, drawer } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout
+  title={`${drawer.title} • ${cabinet.title} Cabinet`}
+  description={drawer.summary}
+>
+  <article class="pb-14 pt-10">
+    <div class="reading-copy prose prose-invert mx-auto max-w-4xl px-4 md:px-0">
+      <nav class="not-prose mb-8 font-mono text-sm">
+        <a href="/cabinet/" class="text-[#5eead4] hover:text-[#c084fc]"
+          >~/cabinet</a
+        >
+        <span class="text-white/35"> / </span>
+        <a
+          href={`/cabinet/${cabinet.slug}/`}
+          class="text-[#5eead4] hover:text-[#c084fc]">{cabinet.slug}</a
+        >
+        <span class="text-white/35"> / {drawer.slug}</span>
+      </nav>
+      <Content />
+    </div>
+  </article>
+</Layout>

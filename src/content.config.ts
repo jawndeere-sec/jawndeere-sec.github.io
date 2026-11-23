@@ -22,4 +22,11 @@ const cppCabinet = defineCollection({
   }),
 });
 
-export const collections = { blog, cppCabinet };
+const studyCabinet = defineCollection({
+  loader: glob({
+    pattern: "*/concepts/*/notes.md",
+    base: `${technicalCabinetRoot}/cabinets`,
+  }),
+});
+
+export const collections = { blog, cppCabinet, studyCabinet };

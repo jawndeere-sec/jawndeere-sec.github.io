@@ -11,6 +11,48 @@ export const cppCabinetRoot = path.join(
   "cpp",
 );
 
+export const studyCabinets = [
+  {
+    slug: "ai-security",
+    title: "AI Security",
+    description:
+      "Local AI engineering, keyword RAG, grounding, and bounded AI security study.",
+  },
+  {
+    slug: "security-platforms",
+    title: "Security Platforms",
+    description:
+      "Course-derived endpoint, response, and SIEM mechanism distinctions.",
+  },
+] as const;
+
+export function studyConceptSlug(id: string): string {
+  return id.split("/")[2];
+}
+
+export function studyCabinetSlug(id: string): string {
+  return id.split("/")[0];
+}
+
+export function getStudyDrawerMetadata(
+  cabinet: string,
+  slug: string,
+): DrawerMetadata {
+  const notes = fs.readFileSync(
+    path.join(
+      technicalCabinetRoot,
+      "cabinets",
+      cabinet,
+      "concepts",
+      slug,
+      "notes.md",
+    ),
+    "utf8",
+  );
+
+  return metadataFromNotes(slug, notes, []);
+}
+
 export type ReferenceExample = {
   name: string;
   source: string;
@@ -66,6 +108,14 @@ export function getDrawerMetadata(slug: string): DrawerMetadata {
     path.join(cppConceptDirectory(slug), "notes.md"),
     "utf8",
   );
+  return metadataFromNotes(slug, notes, listExamples(slug));
+}
+
+function metadataFromNotes(
+  slug: string,
+  notes: string,
+  examples: ReferenceExample[],
+): DrawerMetadata {
   const title = notes.match(/^#\s+(.+)$/m)?.[1]?.trim() ?? humanizeSlug(slug);
   const summaryLine = notes
     .split("\n")
@@ -79,7 +129,7 @@ export function getDrawerMetadata(slug: string): DrawerMetadata {
       summaryLine?.replace(/^-\s+/, "") ??
       "Personal notes and verified examples.",
     sectionCount: Array.from(notes.matchAll(/^##\s+/gm)).length,
-    examples: listExamples(slug),
+    examples,
   };
 }
 

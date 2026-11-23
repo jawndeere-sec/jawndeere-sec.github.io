@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import {
+  getStudyDrawerMetadata,
+  studyCabinets,
+  studyCabinetSlug,
+  studyConceptSlug,
+  type DrawerMetadata,
+} from "@/lib/technicalCabinet";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("studyCabinet");
+
+  return studyCabinets.map((cabinet) => ({
+    params: { cabinet: cabinet.slug },
+    props: {
+      cabinet,
+      drawers: entries
+        .filter((entry) => studyCabinetSlug(entry.id) === cabinet.slug)
+        .map((entry) =>
+          getStudyDrawerMetadata(cabinet.slug, studyConceptSlug(entry.id)),
+        )
+        .sort((left, right) => left.title.localeCompare(right.title)),
+    },
+  }));
+}
+
+type Props = {
+  cabinet: (typeof studyCabinets)[number];
+  drawers: DrawerMetadata[];
+};
+
+const { cabinet, drawers } = Astro.props;
+---
+
+<Layout
+  title={`${cabinet.title} Cabinet • Matt Twells`}
+  description={cabinet.description}
+  constrained={true}
+>
+  <section class="py-12">
+    <p class="font-mono text-sm uppercase tracking-[0.3em] text-[#c084fc]">
+      ~/cabinet/{cabinet.slug}
+    </p>
+    <h1 class="site-section-title mt-3 text-4xl font-bold md:text-5xl">
+      {cabinet.title} Cabinet
+    </h1>
+    <p
+      class="mt-5 max-w-3xl text-base leading-relaxed text-white/75 md:text-lg"
+    >
+      {cabinet.description} Each drawer names its evidence and limits; course notes
+      are not a substitute for a hands-on test.
+    </p>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      {
+        drawers.map((drawer) => (
+          <article class="article-card rounded-xl border border-white/10 bg-white/5 p-6">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-[#5eead4]">
+              {drawer.sectionCount} sections
+            </p>
+            <h2 class="mt-4 text-2xl font-semibold text-white">
+              <a
+                href={`/cabinet/${cabinet.slug}/${drawer.slug}/`}
+                class="article-card-title hover:text-[#5eead4]"
+              >
+                {drawer.title}
+              </a>
+            </h2>
+            <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-white/65">
+              {drawer.summary}
+            </p>
+            <a
+              href={`/cabinet/${cabinet.slug}/${drawer.slug}/`}
+              class="article-card-cta mt-5 inline-block font-mono text-sm"
+            >
+              open drawer →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
